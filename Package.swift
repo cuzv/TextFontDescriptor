@@ -9,13 +9,13 @@ let package = Package(
     .iOS(.v13),
   ],
   products: [
-    .library(name: "Models", targets: ["Models"]),
+    .library(name: "TextFontDescriptor", targets: ["TextFontDescriptor"]),
   ],
   dependencies: [
   ],
   targets: [
     .target(
-      name: "Models",
+      name: "TextFontDescriptor",
       dependencies: [
       ],
       path: "Sources"
