@@ -33,20 +33,20 @@ public struct TextFontDescriptor {
   }
 
   public var isSystemFont: Bool {
-    nil == family
+    family == nil
   }
 
   public var nativeFont: NativeFont {
     var descriptor: NativeFontDescriptor
 
-    if let family = family {
+    if let family {
       // Custom font
       descriptor = NativeFontDescriptor(name: family, size: size)
         .addingAttributes([
-          .traits : [
+          .traits: [
             NativeFontDescriptor.TraitKey.weight: weight,
             NativeFontDescriptor.TraitKey.width: width,
-          ]
+          ],
         ])
     } else {
       // System font
@@ -60,10 +60,10 @@ public struct TextFontDescriptor {
         descriptor = NativeFont.preferredFont(forTextStyle: style)
           .fontDescriptor
           .addingAttributes([
-            .traits : [
+            .traits: [
               NativeFontDescriptor.TraitKey.weight: weight,
               NativeFontDescriptor.TraitKey.width: width,
-            ]
+            ],
           ])
       } else {
         if #available(macOS 13.0, iOS 16.0, *) {
@@ -72,7 +72,7 @@ public struct TextFontDescriptor {
         } else {
           descriptor = NativeFont.systemFont(ofSize: size, weight: weight)
             .fontDescriptor
-            .addingAttributes([.traits : [NativeFontDescriptor.TraitKey.width: width]])
+            .addingAttributes([.traits: [NativeFontDescriptor.TraitKey.width: width]])
         }
       }
     }
@@ -99,8 +99,8 @@ public struct TextFontDescriptor {
   }
 }
 
-extension NativeFont {
-  public static func new(_ descriptor: TextFontDescriptor) -> NativeFont {
+public extension NativeFont {
+  static func new(_ descriptor: TextFontDescriptor) -> NativeFont {
     descriptor.nativeFont
   }
 }
